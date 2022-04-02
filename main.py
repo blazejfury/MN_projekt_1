@@ -64,7 +64,7 @@ def calculate_ema(period: pd.core.frame.DataFrame) -> float:
     """    
     :param period: a slice of pandas Dataframe containing data from which to calculate the EMA
     :return: calculated value of EMA
-    """"
+    """
     alpha = 2 / (len(period) + 1)
     nominator = 0
     denominator = 0
@@ -74,13 +74,21 @@ def calculate_ema(period: pd.core.frame.DataFrame) -> float:
     assert denominator != 0
     return nominator/denominator
 
+def draw_plot(df: pd.core.frame.DataFrame):
+    plt.plot(df['Data'], df['Zamkniecie'])
+    plt.plot(df['Data'], df['macd'])
+    plt.plot(df['Data'], df['signal'])
+    plt.show()
+
+
 
 def main():
     account = Account(0, 1000)
     df = load_data()
     print(df.head())
     create_table(df)
-    
+    draw_plot(df)
+
 
 
 
